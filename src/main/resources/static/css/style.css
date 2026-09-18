@@ -1,0 +1,91 @@
+:root {
+    --bg: #f4efe6;
+    --ink: #1d2a22;
+    --muted: #5b6b61;
+    --card: #fffdf8;
+    --line: #d7cfc0;
+    --accent: #1f6f4a;
+    --accent-ink: #ffffff;
+    --danger: #9b2c2c;
+    --ok: #1f6f4a;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+    font-family: "Segoe UI", "Apple SD Gothic Neo", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+}
+
+a { color: var(--accent); }
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--card);
+}
+.brand {
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+}
+.nav nav { display: flex; gap: 0.9rem; align-items: center; }
+.nav nav a { text-decoration: none; color: var(--ink); }
+.inline { display: inline; margin: 0; }
+
+.hero, .page { max-width: 860px; margin: 0 auto; padding: 4rem 1.5rem; }
+.narrow { max-width: 460px; }
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+h1 { font-size: 2.3rem; line-height: 1.2; margin: 0.3rem 0 1rem; }
+.lede { font-size: 1.1rem; color: var(--muted); max-width: 36rem; }
+.actions { display: flex; gap: 0.8rem; margin-top: 1.6rem; }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 0;
+    border-radius: 999px;
+    padding: 0.7rem 1.2rem;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-small { padding: 0.4rem 0.85rem; font-size: 0.9rem; }
+.btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+}
+
+.cards { display: grid; gap: 1rem; padding: 0; list-style: none; }
+.cards li, .profile, .card-form {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1.2rem 1.3rem;
+}
+.card-form { display: grid; gap: 0.9rem; }
+label { display: grid; gap: 0.35rem; font-weight: 600; }
+input {
+    padding: 0.7rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font: inherit;
+}
+.error { color: var(--danger); font-weight: 600; }
+.ok { color: var(--ok); font-weight: 700; }
+.hint { color: var(--muted); font-size: 0.92rem; }

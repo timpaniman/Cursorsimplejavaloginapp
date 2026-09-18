@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('내 페이지 · AI4CEO Web')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav}"></header>
+<main class="page">
+    <p class="eyebrow">보호된 페이지</p>
+    <h1>안녕하세요, <span th:text="${user.displayName}">사용자</span>님</h1>
+    <p class="lede">로그인에 성공했습니다. 이 화면은 회원만 볼 수 있습니다.</p>
+    <section class="profile">
+        <h2>내 계정</h2>
+        <p><strong>이름</strong> <span th:text="${user.displayName}"></span></p>
+        <p><strong>이메일</strong> <span th:text="${user.email}"></span></p>
+    </section>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-ghost">로그아웃</button>
+    </form>
+</main>
+</body>
+</html>

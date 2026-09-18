@@ -1,0 +1,17 @@
+databases:
+  - name: cursorsimplejavalogin-db
+    plan: free
+    databaseName: login
+    user: login
+
+services:
+  - type: web
+    name: cursorsimplejavaloginapp
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cursorsimplejavalogin-db
+          property: connectionString
