@@ -4,14 +4,14 @@
 <body>
 <header th:replace="~{fragments/layout :: nav}"></header>
 <main class="hero">
-    <p class="eyebrow">Spring Boot + 로그인</p>
-    <h1>간단한 회원 웹사이트</h1>
-    <p class="lede">공개 페이지를 보고, 가입한 뒤 로그인하면 보호된 내 페이지로 들어갑니다.</p>
+    <p class="eyebrow">Spring Boot + login</p>
+    <h1>A simple member site</h1>
+    <p class="lede">Browse the public pages, create an account, then log in to open your protected page.</p>
     <div class="actions">
-        <a class="btn" th:href="@{/signup}">회원가입</a>
-        <a class="btn btn-ghost" th:href="@{/login}">로그인</a>
+        <a class="btn" th:href="@{/signup}">Sign up</a>
+        <a class="btn btn-ghost" th:href="@{/login}">Log in</a>
     </div>
-    <p class="hint" th:if="${param.logout}">로그아웃되었습니다.</p>
+    <p class="hint" th:if="${param.logout}">You have been logged out.</p>
 </main>
 </body>
 </html>

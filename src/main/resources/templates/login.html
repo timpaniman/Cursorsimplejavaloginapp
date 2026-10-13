@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/layout :: head('로그인 · AI4CEO Web')}"></head>
+<head th:replace="~{fragments/layout :: head('Log in · AI4CEO Web')}"></head>
 <body>
 <header th:replace="~{fragments/layout :: nav}"></header>
 <main class="page narrow">
-    <h1>로그인</h1>
-    <p class="ok" th:if="${signupSuccess}">회원가입이 완료되었습니다. 로그인해 주세요.</p>
-    <p class="error" th:if="${param.error}">이메일 또는 비밀번호가 올바르지 않습니다.</p>
+    <h1>Log in</h1>
+    <p class="ok" th:if="${signupSuccess}">Your account is ready. Please log in.</p>
+    <p class="error" th:if="${param.error}">Email or password is incorrect.</p>
     <form th:action="@{/login}" method="post" class="card-form">
         <label>
-            이메일
+            Email
             <input type="email" name="username" required autofocus>
         </label>
         <label>
-            비밀번호
+            Password
             <input type="password" name="password" required>
         </label>
-        <button type="submit" class="btn">로그인</button>
+        <button type="submit" class="btn">Log in</button>
     </form>
-    <p class="hint">데모 계정: demo@ai4ceo.test / Demo1234!</p>
-    <p>계정이 없나요? <a th:href="@{/signup}">회원가입</a></p>
+    <p class="hint">Demo account: demo@demo.com / Demo123</p>
+    <p>Need an account? <a th:href="@{/signup}">Sign up</a></p>
 </main>
 </body>
 </html>

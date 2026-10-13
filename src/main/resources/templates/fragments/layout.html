@@ -10,13 +10,13 @@
 <header th:fragment="nav" class="nav">
     <a class="brand" th:href="@{/}">AI4CEO Web</a>
     <nav>
-        <a th:href="@{/}">홈</a>
-        <a th:href="@{/about}">소개</a>
-        <a th:href="@{/app}" sec:authorize="isAuthenticated()">내 페이지</a>
-        <a th:href="@{/login}" sec:authorize="!isAuthenticated()">로그인</a>
-        <a class="btn btn-small" th:href="@{/signup}" sec:authorize="!isAuthenticated()">회원가입</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/about}">About</a>
+        <a th:href="@{/app}" sec:authorize="isAuthenticated()">My page</a>
+        <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Log in</a>
+        <a class="btn btn-small" th:href="@{/signup}" sec:authorize="!isAuthenticated()">Sign up</a>
         <form th:action="@{/logout}" method="post" class="inline" sec:authorize="isAuthenticated()">
-            <button type="submit" class="btn btn-small btn-ghost">로그아웃</button>
+            <button type="submit" class="btn btn-small btn-ghost">Log out</button>
         </form>
     </nav>
 </header>

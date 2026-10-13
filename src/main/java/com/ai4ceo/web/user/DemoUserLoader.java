@@ -9,20 +9,15 @@ import org.springframework.stereotype.Component;
 public class DemoUserLoader implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(DemoUserLoader.class);
-    private final AppUserRepository users;
     private final AppUserService userService;
 
-    public DemoUserLoader(AppUserRepository users, AppUserService userService) {
-        this.users = users;
+    public DemoUserLoader(AppUserService userService) {
         this.userService = userService;
     }
 
     @Override
     public void run(String... args) {
-        if (users.existsByEmailIgnoreCase("demo@ai4ceo.test")) {
-            return;
-        }
-        userService.register("데모 사용자", "demo@ai4ceo.test", "Demo1234!");
-        log.info("데모 계정 생성: demo@ai4ceo.test / Demo1234!");
+        userService.ensureDemoUser("Demo User", "demo@demo.com", "Demo123");
+        log.info("Demo account ready: demo@demo.com / Demo123");
     }
 }

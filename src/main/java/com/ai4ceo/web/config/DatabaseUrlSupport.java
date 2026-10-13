@@ -1,8 +1,11 @@
 package com.ai4ceo.web.config;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public final class DatabaseUrlSupport {
 
@@ -15,6 +18,9 @@ public final class DatabaseUrlSupport {
             return;
         }
         String raw = System.getenv("DATABASE_URL");
+        if (raw == null || raw.isBlank()) {
+            raw = readLocalDatabaseUrl();
+        }
         if (raw == null || raw.isBlank()) {
             return;
         }
@@ -43,6 +49,24 @@ public final class DatabaseUrlSupport {
             }
         }
         System.setProperty("spring.datasource.url", jdbc);
+    }
+
+    private static String readLocalDatabaseUrl() {
+        Path path = Path.of("config", "render-database.url");
+        if (!Files.isRegularFile(path)) {
+            return null;
+        }
+        try {
+            for (String line : Files.readAllLines(path, StandardCharsets.UTF_8)) {
+                String trimmed = line.trim();
+                if (!trimmed.isEmpty() && !trimmed.startsWith("#")) {
+                    return trimmed;
+                }
+            }
+        } catch (IOException ignored) {
+            return null;
+        }
+        return null;
     }
 
     private static String firstEnv(String... keys) {

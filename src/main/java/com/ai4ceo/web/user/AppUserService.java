@@ -24,7 +24,7 @@ public class AppUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser user = users.findByEmailIgnoreCase(username.trim())
-                .orElseThrow(() -> new UsernameNotFoundException("계정을 찾을 수 없습니다."));
+                .orElseThrow(() -> new UsernameNotFoundException("Account not found."));
         return new User(
                 user.getEmail(),
                 user.getPasswordHash(),
@@ -35,7 +35,7 @@ public class AppUserService implements UserDetailsService {
     public AppUser register(String displayName, String email, String rawPassword) {
         String normalized = email.trim().toLowerCase();
         if (users.existsByEmailIgnoreCase(normalized)) {
-            throw new IllegalArgumentException("이미 가입된 이메일입니다.");
+            throw new IllegalArgumentException("This email is already registered.");
         }
         AppUser user = new AppUser();
         user.setDisplayName(displayName.trim());
@@ -44,8 +44,26 @@ public class AppUserService implements UserDetailsService {
         return users.save(user);
     }
 
+    @Transactional
+    public void ensureDemoUser(String displayName, String email, String rawPassword) {
+        String normalized = email.trim().toLowerCase();
+        AppUser user = users.findByEmailIgnoreCase(normalized).orElse(null);
+        if (user == null) {
+            user = users.findByEmailIgnoreCase("demo@ai4ceo.test").orElse(null);
+        }
+        if (user == null) {
+            register(displayName, normalized, rawPassword);
+            return;
+        }
+        user.setEmail(normalized);
+        if (!passwordEncoder.matches(rawPassword, user.getPasswordHash())) {
+            user.setPasswordHash(passwordEncoder.encode(rawPassword));
+        }
+        users.save(user);
+    }
+
     public AppUser requireByEmail(String email) {
         return users.findByEmailIgnoreCase(email)
-                .orElseThrow(() -> new UsernameNotFoundException("계정을 찾을 수 없습니다."));
+                .orElseThrow(() -> new UsernameNotFoundException("Account not found."));
     }
 }

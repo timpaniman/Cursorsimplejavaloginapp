@@ -6,16 +6,16 @@ import jakarta.validation.constraints.Size;
 
 public class SignupForm {
 
-    @NotBlank(message = "이름을 입력하세요.")
-    @Size(max = 40, message = "이름은 40자 이내여야 합니다.")
+    @NotBlank(message = "Enter your name.")
+    @Size(max = 40, message = "Name must be 40 characters or fewer.")
     private String displayName;
 
-    @NotBlank(message = "이메일을 입력하세요.")
-    @Email(message = "이메일 형식이 올바르지 않습니다.")
+    @NotBlank(message = "Enter your email.")
+    @Email(message = "Enter a valid email address.")
     private String email;
 
-    @NotBlank(message = "비밀번호를 입력하세요.")
-    @Size(min = 6, max = 72, message = "비밀번호는 6자 이상이어야 합니다.")
+    @NotBlank(message = "Enter a password.")
+    @Size(min = 6, max = 72, message = "Password must be at least 6 characters.")
     private String password;
 
     public String getDisplayName() {
